@@ -217,7 +217,24 @@ CREATE TABLE Unique_Table1 (
 	unique_field INT UNIQUE
 );
 
+CREATE TABLE Unuque_Table2 (
+	unique_field INT,
+    CONSTRAINT unique_key_1 UNIQUE (unique_field)
+);
 
+-- ALTER
+CREATE TABLE Unuque_Table3 (
+	unique_field INT
+);
+
+ALTER TABLE Unuque_Table3 MODIFY unique_field INT UNIQUE;
+
+CREATE TABLE Unuque_Table4 (
+	unique_field INT
+);
+
+ALTER TABLE Unuque_Table4 
+ADD CONSTRAINT unique_key_1 UNIQUE (unique_field);
 
 
 
