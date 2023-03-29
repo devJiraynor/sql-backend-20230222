@@ -131,3 +131,97 @@ FROM Custom AS C;
 
 -- 중복 제거 (DISTINCT)
 SELECT DISTINCT name FROM Custom;
+
+-- 연산자
+-- 비교연산
+
+-- BETWEEN a AND b
+-- a 보다 크거나 같으면서 b 보다 작거나 같으면 true를 반환
+SELECT * FROM Custom
+WHERE age BETWEEN 10 AND 20;
+
+-- IN()
+-- 인수로 전달된 값과 동일한 값이 하나라도 존재한다면 true를 반환
+SELECT * FROM Custom
+WHERE name IN ('John Doe', 'Micle', 'James');
+
+-- SELECT * FROM Custom
+-- WHERE name = 'John Doe'
+-- OR name = 'Micle'
+-- OR name = 'James';
+
+-- IS
+-- 비교 대상이 Boolean 형태일 때 사용하는 비교 연산자
+SELECT * FROM Custom
+WHERE accept_marketing IS true;
+
+-- IS NULL
+-- 비교 대상이 Null 이면 true를 반환
+SELECT * FROM Custom
+WHERE eamil IS NULL;
+
+-- LIKE
+-- 문자열의 패턴을 비교하여 동일한 패턴을 가지고 있는 문자열이면 true를 반환
+
+-- 와일드 카드
+-- % : 0개 이상의 패턴
+-- _ : 1개의 패턴
+SELECT * FROM Custom
+WHERE email LIKE '%gmail%';
+
+-- Constraint (제약조건)
+-- RDBMS에서 삽입, 수정, 삭제에 대해서 무결성을 보장해주는 조건
+
+-- NOT NULL
+-- 입력 혹은 수정 작업에 있어서 해당 필드에 Null이 올 수 없도록 하는 
+-- 제약 조건
+
+-- Create
+CREATE TABLE NotnullTable1 (
+	notnull_field INT NOT NULL
+);
+
+-- Alter
+-- Alter로 NOT NULL 제약 조건을 추가할 땐
+-- 원래 존재하는 레코드에서 해당 필드의 데이터가 Null이 존재하면 안됨
+CREATE TABLE NotnullTable (
+	notnull_field INT
+);
+
+ALTER TABLE NotnullTable1
+MODIFY COLUMN notnull_field INT NOT NULL;
+
+-- Default
+-- 입력 작업에서 해당 필드의 값이 들어오지 않으면 기본값으로 지정해 주는
+-- 제약 조건
+
+-- CREATE
+CREATE TABLE defaultTable1 (
+	default_field INT DEFAULT 1
+);
+
+-- ALTER
+CREATE TABLE defaultTable2 (
+	default_field INT
+);
+
+ALTER TABLE defaultTable2
+MODIFY COLUMN default_field INT DEFAULT 1;
+
+-- UNIQUE
+-- 삽입, 수정 작업에서 해당 제약조건이 걸려있는 필드의 데이터에대 해 
+-- 중복을 허용하지 않는 제약조건
+
+-- CREATE
+CREATE TABLE Unique_Table1 (
+	unique_field INT UNIQUE
+);
+
+
+
+
+
+
+
+
+
