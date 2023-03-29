@@ -236,6 +236,72 @@ CREATE TABLE Unuque_Table4 (
 ALTER TABLE Unuque_Table4 
 ADD CONSTRAINT unique_key_1 UNIQUE (unique_field);
 
+-- PRIMARY KEY
+-- 기본키에 대한 제약조건, NOT NULL / UNIQUE 가 포함되어 있음
+-- 삽입, 수정시에 NULL을 포함할 수 없음, 중복된 데이터를 포함할 수 없음
+
+-- CREATE
+CREATE TABLE primary_table1 (
+	primary_field INT PRIMARY KEY
+);
+
+CREATE TABLE primary_table2 (
+	primary_field INT,
+    CONSTRAINT primary_key_1
+    PRIMARY KEY (primary_field)
+);
+
+-- ALTER
+CREATE TABLE primary_table3 (
+	primary_field INT
+);
+
+ALTER TABLE primary_table3
+MODIFY COLUMN primary_field INT PRIMARY KEY;
+
+CREATE TABLE primary_table4 (
+	primary_field INT
+);
+
+ALTER TABLE primary_table4
+ADD CONSTRAINT primary_key_1 PRIMARY KEY (primary_field);
+
+-- FOREIGN KEY
+-- 참조 제약조건, 해당 테이블을 해당 필드를 기준으로 외부 테이블의 외부 필드를
+-- 참조하도록 하는 제약조건
+-- 해당 제약조건이 걸려있는 필드의 경우 참조하는 테이블의 참조 필드에
+-- 존재하는 데이터만 삽입 할 수 있음
+
+-- CREATE
+CREATE TABLE Referenced_Table (
+	primary_key INT PRIMARY KEY
+);
+
+-- CREATE 시에 참조 제약조건을 추가할 땐
+-- 선행적으로 참조할 테이블과 필드가 존재해야하고
+-- 참조할 필드가 PRIMARY KEY 혹은 UNIQUE 제약조건이 지정되어 있어야 함
+-- 참조 제약조건이 걸리는 필드는 참조할 필드의 데이터타입과 일치해야함
+CREATE TABLE Foreign_Table1 (
+	foreign_field INT,
+    CONSTRAINT foreign_key_1
+    FOREIGN KEY (foreign_field)
+    REFERENCES Referenced_Table (primary_key)
+);
+
+-- ALTER
+CREATE TABLE Foreign_Table2 (
+	foreign_field INT
+);
+
+ALTER TABLE Foreign_Table2
+ADD CONSTRAINT foreign_key_1
+FOREIGN KEY (foreign_field)
+REFERENCES Referenced_Table (primary_key);
+
+
+
+
+
 
 
 
