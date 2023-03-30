@@ -298,11 +298,63 @@ ADD CONSTRAINT foreign_key_1
 FOREIGN KEY (foreign_field)
 REFERENCES Referenced_Table (primary_key);
 
+----------------------------------------------------
 
+CREATE TABLE Room (
+	room_number VARCHAR(4) PRIMARY KEY,
+    room_type VARCHAR(20) NOT NULL,
+    room_amount INT NOT NULL,
+    custom_id INT,
+    CONSTRAINT Room_Foreign_Key
+    FOREIGN KEY (custom_id)
+    REFERENCES Custom (id)
+);
 
+INSERT INTO Room VALUES ('1001', '비즈니스', 200, 1);
+INSERT INTO Room VALUES ('1203', 'VIP', 1000, 10);
+INSERT INTO Room VALUES ('1801', 'VIP', 1000, 12);
 
+INSERT INTO Room VALUES ('1002', '비즈니스', 200, 1);
+INSERT INTO Room VALUES ('1204', 'VIP', 1000, 10);
+INSERT INTO Room VALUES ('1802', 'VIP', 1000, 12);
 
+INSERT INTO Room VALUES ('1003', '비즈니스', 200, null);
+INSERT INTO Room VALUES ('1205', 'VIP', 1000, null);
+INSERT INTO Room VALUES ('1803', 'VIP', 1000, null);
 
+SELECT * FROM Room;
+
+-- JOIN
+-- 여러개의 테이블에서 관계로 연결되어 있는 표현을 하나로 검색하도록 해주는
+-- 쿼리
+
+-- INNER JOIN
+-- FROM 첫번째테이블 INNER JOIN 두번째테이블 ON 조건
+-- FROM 첫번째테이블 JOIN 두번째테이블 ON 조건
+-- FROM 첫번째테이블, 두번째테이블 WHERE 조건
+SELECT R.room_number AS '방번호', C.name AS '고객이름'
+FROM Room R INNER JOIN Custom C
+ON C.id = R.custom_id;
+
+SELECT *
+FROM Room JOIN Custom;
+
+SELECT *
+FROM Room, Custom
+WHERE Room.custom_id = Custom.id;
+
+-- LEFT JOIN
+-- FROM 첫번째테이블 LEFT JOIN 두번째테이블 ON 조건
+
+SELECT *
+FROM Room LEFT JOIN Custom
+ON Room.custom_id = Custom.id;
+
+-- RIGHT JOIN
+-- FROM 첫번째테이블 RIGHT JOIN 두번째테이블 ON 조건
+SELECT *
+FROM Room RIGHT JOIN Custom
+On Room.custom_id = Custom.id;
 
 
 

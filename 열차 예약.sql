@@ -70,6 +70,8 @@ ADD CONSTRAINT stop_station_foreign_key_2
 FOREIGN KEY (train_number)
 REFERENCES TRAIN (train_number);
 
+-------------------------------------------------------------------
+
 
 
 
