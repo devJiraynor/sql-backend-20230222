@@ -350,11 +350,59 @@ SELECT *
 FROM Room LEFT JOIN Custom
 ON Room.custom_id = Custom.id;
 
+INSERT INTO Custom 
+VALUES (20, 'David', 'David@gmail.com', 30, 'New york', 1);
+
 -- RIGHT JOIN
 -- FROM 첫번째테이블 RIGHT JOIN 두번째테이블 ON 조건
 SELECT *
 FROM Room RIGHT JOIN Custom
 On Room.custom_id = Custom.id;
+
+-- Sub Query
+-- 복잡한 Join 문을 조금더 간결하게 사용할 수 있도록 해주는 쿼리
+-- SELECT, INSERT, UPDATE, DELETE, SET, DO 에서 사용가능
+-- FROM, WHERE 절에서 사용가능
+
+-- WHERE절 사용
+SELECT *
+FROM Room
+WHERE custom_id IN (
+	SELECT id
+    FROM Custom
+    WHERE name = 'Michle'
+);
+
+-- ex) IN 연산 + LIKE
+
+SELECT *
+FROM Custom
+WHERE id IN (
+	SELECT id
+    FROM Custom
+    WHERE name LIKE 'M%'
+    OR name LIKE 'D%'
+);
+
+-- FROM
+SELECT CustomId
+FROM (
+	SELECT id AS CustomId, email AS CustomEmail
+    FROM Custom
+) C;
+
+-- ORDER BY (정렬)
+-- 특정 필드를 기준으로 오름차순 내림차순 정렬하여 결과를 반환
+SELECT * 
+FROM Namgu;
+
+-- 내림차순 DESC
+SELECT *FROM Namgu
+ORDER BY 세대수 DESC;
+
+-- 오름차순 ASC;
+SELECT * FROM Namgu
+ORDER BY 통 DESC, 반 ASC;
 
 
 
