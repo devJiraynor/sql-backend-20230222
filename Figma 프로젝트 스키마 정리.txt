@@ -4,8 +4,22 @@ User (email, password, nickname, tel_number, address, address_detail, consent_pe
 
 게시물 (게시물번호, 게시물 사진, 작성자 이메일, 작성 날짜, 제목, 내용, 조회수)
 
+Board (board_number, writer_email, title,
+content, board_image_url, write_datetime, view_count)
+
 검색 로그 (로그시퀀스, 검색어, 관련 검색어)
+Search_Log (log_sequence, search_word, related_search_word)
 
 좋아요 리스트 (유저 이메일, 게시물 번호)
 
 댓글 리스트 (댓글번호, 유저 이메일, 게시물 번호, 작성 시간, 댓글 내용)
+
+Comment (comment_number, user_email, board_number, comment_content, write_datetime)
+
+
+
+
+
+
+
+
